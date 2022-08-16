@@ -23,13 +23,13 @@
     "gatsby-remark-images": "^6.20.0",
     "gatsby-remark-katex": "^6.20.0",
     "gatsby-remark-prismjs": "^6.20.0",
-    "gatsby-remark-reading-time": "^1.1.0",
     "gatsby-remark-static-images": "^1.2.1",
     "gatsby-source-filesystem": "^4.20.0",
     "gatsby-transformer-remark": "^5.20.0",
     "gatsby-transformer-sharp": "^4.20.0",
     "katex": "^0.13.3",
     "lodash": "^4.17.21",
+    "minipass": "3.3.4",
     "prismjs": "^1.28.0",
     "prop-types": "^15.8.1",
     "query-string": "^7.1.1",
@@ -42,13 +42,15 @@
     "react-scroll": "^1.8.7",
     "react-spring": "^9.5.2",
     "redux": "^4.2.0",
+    "sharp": "^0.30.7",
     "styled-components": "^5.3.5",
     "styled-reset": "^4.4.2",
-    "utterances-react-component": "^1.0.0",
-    "minipass": "3.3.4",
-    "sharp": "^0.30.7"
+    "utterances-react-component": "^1.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/eslint-parser": "^7.18.9",
+    "eslint": "^8.22.0",
     "eslint-config-react-app": "^7.0.1",
     "gh-pages": "^4.0.0",
     "prettier": "2.7.1"
