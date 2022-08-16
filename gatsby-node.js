@@ -1,5 +1,6 @@
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const _ = require("lodash")
+const readingTime = require("reading-time");
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
@@ -94,7 +95,18 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       name: `slug`,
       value: newSlug,
-    })
+    });
+    createNodeField({
+      node,
+      name: `readingTime`,
+      value: readingTime(node.rawMarkdownBody),
+    });
+  } else if (node.internal.type === `Mdx`) {
+    createNodeField({
+      node,
+      name: `readingTime`,
+      value: readingTime(node.rawBody),
+    });
   }
 }
 
