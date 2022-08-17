@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-import styled, { useTheme } from "styled-components"
+import styled from "@emotion/styled"
+import { useTheme } from "@emotion/react"
 
 import { Link } from "gatsby"
 

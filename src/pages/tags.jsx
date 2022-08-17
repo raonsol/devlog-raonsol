@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import _ from "lodash"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 import SEO from "components/SEO"
 import filter from "lodash/filter"
 

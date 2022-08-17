@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react"
 import _ from "lodash"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 import { Link } from "gatsby"
 
 import { AiOutlineArrowLeft } from "react-icons/ai"

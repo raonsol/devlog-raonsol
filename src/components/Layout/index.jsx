@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { ThemeProvider } from "styled-components"
+import { ThemeProvider } from "@emotion/react"
 
 import { useSelector, useDispatch } from "react-redux"
 import { setLight, setDark } from "reducers/theme"

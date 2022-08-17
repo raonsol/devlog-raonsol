@@ -1,5 +1,5 @@
 import React from "react"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 
 import { FiSearch } from "react-icons/fi"
 
@@ -17,7 +17,7 @@ const Icon = styled.span`
   transition: all 0.2s;
 `
 
-const Input = styled.input.attrs({ type: "text" })`
+const Input = styled.input`
   padding: 14px 19.2px 12px 50px;
   width: 100%;
   border: 1px solid ${props => props.theme.colors.textFieldBorder};
@@ -37,6 +37,9 @@ const Input = styled.input.attrs({ type: "text" })`
     color: ${props => props.theme.colors.textFieldActivatedBorder};
   }
 `
+Input.defaultProps = {
+  type: "text",
+};
 
 const TextField = ({ ...props }) => {
   return (

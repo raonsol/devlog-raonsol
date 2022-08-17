@@ -10,6 +10,7 @@ module.exports = {
     siteUrl,
   },
   plugins: [
+    `gatsby-plugin-emotion`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-robots-txt`,
     {
@@ -37,7 +38,6 @@ module.exports = {
         display: "swap",
       },
     },
-    "gatsby-plugin-styled-components",
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,

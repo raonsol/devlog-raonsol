@@ -1,5 +1,5 @@
 import React from "react"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 
 import { title } from "../../../../blog-config"
 
@@ -21,7 +21,10 @@ const Footer = () => {
   return (
     <FooterWrapper>
       © {title}, Built with Gatsby and{" "}
-      <a href="https://github.com/raonsol/gatsby-starter-raonsoll" target="blank">
+      <a
+        href="https://github.com/raonsol/gatsby-starter-raonsoll"
+        target="blank"
+      >
         gatsby-starter-raonsol
       </a>{" "}
       theme.

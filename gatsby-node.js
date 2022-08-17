@@ -102,6 +102,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value: readingTime(node.rawMarkdownBody),
     });
   } else if (node.internal.type === `Mdx`) {
+    const slug = createFilePath({ node, getNode })
+    const newSlug = `/${slug.split("/").reverse()[1]}/`
+    createNodeField({
+      node,
+      name: `slug`,
+      value: newSlug,
+    });
     createNodeField({
       node,
       name: `readingTime`,

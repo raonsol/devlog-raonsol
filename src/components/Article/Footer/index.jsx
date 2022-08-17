@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { navigate } from "gatsby"
 import { useSelector } from "react-redux"
-import styled, { useTheme } from "styled-components"
+import styled from "@emotion/styled"
+import { useTheme } from "@emotion/react"
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi"
 import { Utterances } from "utterances-react-component"
 

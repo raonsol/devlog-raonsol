@@ -1,6 +1,6 @@
 import React from "react"
 import { flow, map, groupBy, sortBy, filter, reverse } from "lodash/fp"
-import styled from "styled-components"
+import styled from "@emotion/styled"
 import SEO from "components/SEO"
 
 import { graphql } from "gatsby"
