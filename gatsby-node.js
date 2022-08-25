@@ -1,6 +1,6 @@
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const _ = require("lodash")
-const readingTime = require("reading-time");
+const readingTime = require("reading-time")
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
@@ -10,10 +10,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const result = await graphql(`
     {
-      postsRemark: allMarkdownRemark(
-        sort: { fields: [frontmatter___date], order: ASC }
-        limit: 1000
-      ) {
+      allMdx(sort: { fields: [frontmatter___date], order: ASC }, limit: 1000) {
         nodes {
           id
           fields {
@@ -22,9 +19,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           frontmatter {
             series
           }
+          internal {
+            contentFilePath
+          }
         }
       }
-      tagsGroup: allMarkdownRemark(limit: 2000) {
+      tagsGroup: allMdx(limit: 2000) {
         group(field: frontmatter___tags) {
           fieldValue
         }
@@ -40,7 +40,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const posts = result.data.postsRemark.nodes
+  // const posts = result.data.postsRemark.nodes
+  const posts = result.data.allMdx.nodes
   const series = _.reduce(
     posts,
     (acc, cur) => {
@@ -59,7 +60,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
       createPage({
         path: post.fields.slug,
-        component: postTemplate,
+        component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
         context: {
           id: post.id,
           series: post.frontmatter.series,
@@ -95,12 +96,12 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       name: `slug`,
       value: newSlug,
-    });
+    })
     createNodeField({
       node,
       name: `readingTime`,
       value: readingTime(node.rawMarkdownBody),
-    });
+    })
   } else if (node.internal.type === `Mdx`) {
     const slug = createFilePath({ node, getNode })
     const newSlug = `/${slug.split("/").reverse()[1]}/`
@@ -108,19 +109,19 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       name: `slug`,
       value: newSlug,
-    });
+    })
     createNodeField({
       node,
       name: `readingTime`,
-      value: readingTime(node.rawBody),
-    });
+      value: readingTime(node.body),
+    })
   }
 }
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions
   const typeDefs = `
-  type MarkdownRemark implements Node {
+  type Mdx implements Node {
     frontmatter: Frontmatter!
   }
   type Frontmatter {

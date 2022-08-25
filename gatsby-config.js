@@ -62,63 +62,60 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        commonmark: true,
-        footnotes: true,
-        pedantic: true,
-        gfm: true,
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 680,
-              loading: "lazy",
-              wrapperStyle: "margin-bottom: 16px;",
-              quality: 100,
-              showCaptions: true,
+        extensions: [`.md`, `.mdx`],
+        mdxOptions: {
+          remarkPlugins: [
+            require('remark-math'),
+            {
+              resolve: `gatsby-remark-images`,
+              options: {
+                maxWidth: 680,
+                loading: "lazy",
+                wrapperStyle: "margin-bottom: 16px;",
+                quality: 100,
+                showCaptions: true,
+              },
             },
-          },
-          {
-            resolve: `gatsby-remark-prismjs`,
-            options: {
-              classPrefix: "language-",
-              inlineCodeMarker: null,
-              aliases: {},
-              showLineNumbers: false,
-              noInlineHighlight: false,
-              languageExtensions: [
-                {
-                  language: "superscript",
-                  extend: "javascript",
-                  definition: {
-                    superscript_types: /(SuperType)/,
-                  },
-                  insertBefore: {
-                    function: {
-                      superscript_keywords: /(superif|superelse)/,
+            {
+              resolve: `gatsby-remark-prismjs`,
+              options: {
+                classPrefix: "language-",
+                inlineCodeMarker: null,
+                aliases: {},
+                showLineNumbers: false,
+                noInlineHighlight: false,
+                languageExtensions: [
+                  {
+                    language: "superscript",
+                    extend: "javascript",
+                    definition: {
+                      superscript_types: /(SuperType)/,
+                    },
+                    insertBefore: {
+                      function: {
+                        superscript_keywords: /(superif|superelse)/,
+                      },
                     },
                   },
+                ],
+                prompt: {
+                  user: "root",
+                  host: "localhost",
+                  global: false,
                 },
-              ],
-              prompt: {
-                user: "root",
-                host: "localhost",
-                global: false,
+                escapeEntities: {},
               },
-              escapeEntities: {},
             },
-          },
-          {
-            resolve: `gatsby-remark-katex`,
-            options: {
-              strict: `ignore`,
+            {
+              resolve: "gatsby-remark-static-images",
             },
-          },
-          {
-            resolve: "gatsby-remark-static-images",
-          },
-        ],
+          ],
+          rehypePlugins: [
+            [require('rehype-katex'), { strict: 'ignore' }],
+          ],
+        },
       },
     },
     `gatsby-plugin-resolve-src`,
@@ -140,8 +137,8 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map(edge => {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(edge => {
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
                   date: edge.node.frontmatter.date,
@@ -153,7 +150,7 @@ module.exports = {
             },
             query: `
               {
-                allMarkdownRemark(
+                allMdx(
                   sort: { order: DESC, fields: [frontmatter___date] },
                 ) {
                   edges {

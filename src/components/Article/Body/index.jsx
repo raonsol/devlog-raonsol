@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   }
 `
 
-const Body = ({ html }) => {
+const Body = ({ children }) => {
   const [toc, setToc] = useState([])
 
   const [ref, offsetTop] = useOffsetTop()
@@ -32,12 +32,9 @@ const Body = ({ html }) => {
     <Wrapper>
       <Toc items={toc} articleOffset={offsetTop} />
 
-      <StyledMarkdown
-        id="article-body"
-        dangerouslySetInnerHTML={{ __html: html }}
-        itemProp="articleBody"
-        ref={ref}
-      />
+      <StyledMarkdown id="article-body" itemProp="articleBody" ref={ref}>
+        {children}
+      </StyledMarkdown>
     </Wrapper>
   )
 }

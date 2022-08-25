@@ -19,17 +19,17 @@ const SearchWrapper = styled.div`
 `
 
 const Search = ({ data }) => {
-  const posts = data.allMarkdownRemark.nodes
+  const posts = data.allMdx.nodes
 
   const [query, setQuery] = useState("")
 
   const filteredPosts = useCallback(
     posts.filter(post => {
-      const { frontmatter, rawMarkdownBody } = post
+      const { frontmatter, body } = post
       const { title } = frontmatter
       const lowerQuery = query.toLocaleLowerCase()
 
-      if (rawMarkdownBody.toLocaleLowerCase().includes(lowerQuery)) return true
+      if (body.toLocaleLowerCase().includes(lowerQuery)) return true
 
       return title.toLocaleLowerCase().includes(lowerQuery)
     }),
@@ -59,9 +59,9 @@ export default Search
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
-        excerpt(pruneLength: 200, truncate: true)
+        excerpt(pruneLength: 200)
         fields {
           slug
         }
@@ -70,7 +70,7 @@ export const pageQuery = graphql`
           title
           tags
         }
-        rawMarkdownBody
+        body
       }
     }
   }

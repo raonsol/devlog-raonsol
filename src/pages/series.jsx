@@ -22,7 +22,7 @@ const TagListWrapper = styled.div`
 `
 
 const SeriesPage = ({ data }) => {
-  const posts = data.allMarkdownRemark.nodes
+  const posts = data.allMdx.nodes
   const series = flow(
     map(post => ({ ...post.frontmatter, slug: post.fields.slug })),
     groupBy("series"),
@@ -64,13 +64,13 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       group(field: frontmatter___tags) {
         fieldValue
         totalCount
       }
       nodes {
-        excerpt(pruneLength: 200, truncate: true)
+        excerpt(pruneLength: 200)
         fields {
           slug
         }

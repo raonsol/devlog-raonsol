@@ -88,13 +88,13 @@ const Series = ({ pageContext, data }) => {
 export default Series
 
 export const pageQuery = graphql`
-  query BlogSeriesBySeriesName($series: String) {
-    posts: allMarkdownRemark(
+  query ($series: String) {
+    posts: allMdx(
       sort: { order: ASC, fields: [frontmatter___date] }
       filter: { frontmatter: { series: { eq: $series } } }
     ) {
       nodes {
-        excerpt(pruneLength: 200, truncate: true)
+        excerpt(pruneLength: 200)
         fields {
           slug
         }

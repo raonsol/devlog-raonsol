@@ -13,8 +13,8 @@ import VerticalSpace from "components/VerticalSpace"
 import { title, description, siteUrl } from "../../blog-config"
 
 const BlogIndex = ({ data }) => {
-  const posts = data.allMarkdownRemark.nodes
-  const tags = _.sortBy(data.allMarkdownRemark.group, ["totalCount"]).reverse()
+  const posts = data.allMdx.nodes
+  const tags = _.sortBy(data.allMdx.group, ["totalCount"]).reverse()
 
   if (posts.length === 0) {
     return (
@@ -47,13 +47,13 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       group(field: frontmatter___tags) {
         fieldValue
         totalCount
       }
       nodes {
-        excerpt(pruneLength: 200, truncate: true)
+        excerpt(pruneLength: 200)
         fields {
           slug
         }

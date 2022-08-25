@@ -7,8 +7,8 @@ import Article from "components/Article"
 
 import { siteUrl } from "../../blog-config"
 
-const Post = ({ data }) => {
-  const post = data.markdownRemark
+const Post = ({ data, children }) => {
+  const post = data.mdx
   const { previous, next, seriesList } = data
 
   const { title, date, update, tags, series } = post.frontmatter
@@ -46,7 +46,7 @@ const Post = ({ data }) => {
         {filteredSeries.length > 0 && (
           <Article.Series header={series} series={filteredSeries} />
         )}
-        <Article.Body html={post.html} />
+        <Article.Body children={children} />
         <Article.Footer previous={previous} next={next} />
       </Article>
     </Layout>
@@ -56,7 +56,7 @@ const Post = ({ data }) => {
 export default Post
 
 export const pageQuery = graphql`
-  query BlogPostBySlug(
+  query (
     $id: String!
     $series: String
     $previousPostId: String
@@ -67,10 +67,9 @@ export const pageQuery = graphql`
         title
       }
     }
-    markdownRemark(id: { eq: $id }) {
+    mdx(id: { eq: $id }) {
       id
-      excerpt(pruneLength: 200, truncate: true)
-      html
+      excerpt(pruneLength: 200)
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
@@ -85,7 +84,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    seriesList: allMarkdownRemark(
+    seriesList: allMdx(
       sort: { order: ASC, fields: [frontmatter___date] }
       filter: { frontmatter: { series: { eq: $series } } }
     ) {
@@ -101,7 +100,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
+    previous: mdx(id: { eq: $previousPostId }) {
       fields {
         slug
       }
@@ -109,7 +108,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    next: markdownRemark(id: { eq: $nextPostId }) {
+    next: mdx(id: { eq: $nextPostId }) {
       fields {
         slug
       }

@@ -25,8 +25,8 @@ const TagListWrapper = styled.div`
 `
 
 const TagsPage = ({ data }) => {
-  const tags = _.sortBy(data.allMarkdownRemark.group, ["totalCount"]).reverse()
-  const posts = data.allMarkdownRemark.nodes
+  const tags = _.sortBy(data.allMdx.group, ["totalCount"]).reverse()
+  const posts = data.allMdx.nodes
 
   const [selected, setSelected] = useState()
   const [filteredPosts, setFilteredPosts] = useState([])
@@ -98,13 +98,13 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
       group(field: frontmatter___tags) {
         fieldValue
         totalCount
       }
       nodes {
-        excerpt(pruneLength: 200, truncate: true)
+        excerpt(pruneLength: 200)
         fields {
           slug
         }
