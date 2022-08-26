@@ -7,6 +7,7 @@ export default ({ children, className }) => {
   const language = className ? className.replace(/language-/, "") : ""
   const Line = styled.div`
     display: table-row;
+    font-size: 0.9rem;
   `
   const LineNo = styled.span`
     display: table-cell;
@@ -20,8 +21,7 @@ export default ({ children, className }) => {
   `
   const Inline = styled.div`
     padding: 0.25rem;
-    background-color: ${props => props.theme.colors.blockQuoteBackground};
-    border: 1px solid ${props => props.theme.colors.blockQuoteBorder};
+    background-color: ${props => props.theme.colors.inlineCodeBackground};
     color: ${props => props.theme.colors.text};
     border-radius: 5px;
     font-size: 0.9rem;
@@ -53,8 +53,6 @@ export default ({ children, className }) => {
       )}
     </Highlight>
   ) : (
-    <code>
-      <Inline>{children}</Inline>
-    </code>
+      <Inline><code>{children}</code></Inline>
   )
 }
