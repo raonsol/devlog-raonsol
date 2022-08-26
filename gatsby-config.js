@@ -65,56 +65,24 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.md`, `.mdx`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 680,
+              loading: "lazy",
+              wrapperStyle: "margin-bottom: 16px;",
+              quality: 100,
+              showCaptions: true,
+            },
+          },
+          {
+            resolve: "gatsby-remark-static-images",
+          },
+        ],
         mdxOptions: {
-          remarkPlugins: [
-            require('remark-math'),
-            {
-              resolve: `gatsby-remark-images`,
-              options: {
-                maxWidth: 680,
-                loading: "lazy",
-                wrapperStyle: "margin-bottom: 16px;",
-                quality: 100,
-                showCaptions: true,
-              },
-            },
-            {
-              resolve: `gatsby-remark-prismjs`,
-              options: {
-                classPrefix: "language-",
-                inlineCodeMarker: null,
-                aliases: {},
-                showLineNumbers: false,
-                noInlineHighlight: false,
-                languageExtensions: [
-                  {
-                    language: "superscript",
-                    extend: "javascript",
-                    definition: {
-                      superscript_types: /(SuperType)/,
-                    },
-                    insertBefore: {
-                      function: {
-                        superscript_keywords: /(superif|superelse)/,
-                      },
-                    },
-                  },
-                ],
-                prompt: {
-                  user: "root",
-                  host: "localhost",
-                  global: false,
-                },
-                escapeEntities: {},
-              },
-            },
-            {
-              resolve: "gatsby-remark-static-images",
-            },
-          ],
-          rehypePlugins: [
-            [require('rehype-katex'), { strict: 'ignore' }],
-          ],
+          remarkPlugins: [require("remark-math"), require(`remark-gfm`)],
+          rehypePlugins: [[require("rehype-katex"), { strict: "ignore" }]],
         },
       },
     },

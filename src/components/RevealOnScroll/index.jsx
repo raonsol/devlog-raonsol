@@ -4,15 +4,17 @@ import { css } from "@emotion/react"
 
 import useScroll from "hooks/useScroll"
 
+const opacityCSS = props =>
+  props.visible &&
+  css`
+    opacity: 1;
+  `
+
 const StyledWrapper = styled.div`
   position: relative;
   opacity: 0;
   transition: 0.35s all ease;
-  ${props =>
-    props.visible &&
-    css`
-      opacity: 1;
-    `}
+  ${opacityCSS}
 `
 
 const RevealOnScroll = ({ revealAt, reverse, children }) => {

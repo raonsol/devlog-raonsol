@@ -23,7 +23,7 @@ const ArticleButtonContainer = styled.div`
     padding: 0 12.8px;
     flex-direction: column;
 
-    & > div:first-child {
+    & > div:first-of-type {
       margin-bottom: 12.8px;
     }
   }
