@@ -81,7 +81,7 @@ module.exports = {
           },
         ],
         mdxOptions: {
-          remarkPlugins: [require("remark-math")],
+          remarkPlugins: [require("remark-math"), require(`remark-gfm`)],
           rehypePlugins: [[require("rehype-katex"), { strict: "ignore" }]],
         },
       },
