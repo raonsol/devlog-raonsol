@@ -38,7 +38,6 @@ const Body = ({ children }) => {
       <Toc items={toc} articleOffset={offsetTop} />
       <StyledMarkdown id="article-body" itemProp="articleBody" ref={ref}>
         <MDXProvider components={components}>{children}</MDXProvider>
-        {children}
       </StyledMarkdown>
     </Wrapper>
   )
