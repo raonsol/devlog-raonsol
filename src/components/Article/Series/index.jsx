@@ -42,7 +42,7 @@ const Post = styled.li`
       ? props.theme.colors.text
       : props.theme.colors.tertiaryText};
 
-  &:not(:last-child) {
+  &:not(:last-of-type) {
     margin-bottom: 9.6px;
   }
 

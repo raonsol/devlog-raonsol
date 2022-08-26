@@ -8,7 +8,7 @@ const StyledMarkdown = styled.div`
     overflow: hidden;
   }
 
-  & *:first-child {
+  & *:first-of-type {
     margin-top: 0;
   }
 
@@ -81,7 +81,7 @@ const StyledMarkdown = styled.div`
     border-left: 4px solid ${props => props.theme.colors.blockQuoteBorder};
     background-color: ${props => props.theme.colors.blockQuoteBackground};
 
-    & *:last-child {
+    & *:last-of-type {
       margin-bottom: 0;
     }
   }
@@ -109,15 +109,15 @@ const StyledMarkdown = styled.div`
     padding: 8px;
   }
 
-  & tr:first-child td {
+  & tr:first-of-type td {
     border-top: none;
   }
 
-  & tr:nth-child(even) {
+  & tr:nth-of-type(even) {
     background-color: ${props => props.theme.colors.tableBackground};
   }
 
-  & tr:last-child td {
+  & tr:last-of-type td {
     border-bottom: none;
   }
 
@@ -148,7 +148,7 @@ const StyledMarkdown = styled.div`
     font-size: inherit;
   }
 
-  & tr:nth-child(even) code.language-text {
+  & tr:nth-of-type(even) code.language-text {
     background-color: ${props => props.theme.colors.inlineCodeBackgroundDarker};
   }
 

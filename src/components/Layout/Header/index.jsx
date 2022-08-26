@@ -99,11 +99,11 @@ const IconRail = styled.div`
     transition: opacity 0.25s;
   }
 
-  & > svg:first-child {
+  & > svg:first-of-type {
     opacity: ${props => (props.theme === "light" ? 0 : 1)};
   }
 
-  & > svg:last-child {
+  & > svg:last-of-type {
     opacity: ${props => (props.theme === "dark" ? 0 : 1)};
   }
 `
