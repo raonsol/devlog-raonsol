@@ -65,26 +65,24 @@ module.exports = {
       resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.md`, `.mdx`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 680,
+              loading: "lazy",
+              wrapperStyle: "margin-bottom: 16px;",
+              quality: 100,
+              showCaptions: true,
+            },
+          },
+          {
+            resolve: "gatsby-remark-static-images",
+          },
+        ],
         mdxOptions: {
-          remarkPlugins: [
-            require('remark-math'),
-            {
-              resolve: `gatsby-remark-images`,
-              options: {
-                maxWidth: 680,
-                loading: "lazy",
-                wrapperStyle: "margin-bottom: 16px;",
-                quality: 100,
-                showCaptions: true,
-              },
-            },
-            {
-              resolve: "gatsby-remark-static-images",
-            },
-          ],
-          rehypePlugins: [
-            [require('rehype-katex'), { strict: 'ignore' }],
-          ],
+          remarkPlugins: [require("remark-math")],
+          rehypePlugins: [[require("rehype-katex"), { strict: "ignore" }]],
         },
       },
     },
