@@ -1,6 +1,6 @@
 import React from "react"
 import Highlight, { defaultProps } from "prism-react-renderer"
-import theme from 'prism-react-renderer/themes/oceanicNext';
+import theme from "prism-react-renderer/themes/oceanicNext"
 import styled from "@emotion/styled"
 
 export default ({ children, className }) => {
@@ -18,9 +18,25 @@ export default ({ children, className }) => {
   const LineContent = styled.span`
     display: table-cell;
   `
+  const Inline = styled.div`
+    padding: 0.25rem;
+    background-color: ${props => props.theme.colors.blockQuoteBackground};
+    border: 1px solid ${props => props.theme.colors.blockQuoteBorder};
+    color: ${props => props.theme.colors.text};
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-family: source code pro;
+    line-height: 1.1rem;
+    display: inline-block;
+  `
 
   return language ? (
-    <Highlight {...defaultProps} code={children} language={language} theme={theme}>
+    <Highlight
+      {...defaultProps}
+      code={children}
+      language={language}
+      theme={theme}
+    >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre className={className} style={{ ...style, padding: "20px" }}>
           {tokens.slice(0, -1).map((line, i) => (
@@ -37,6 +53,8 @@ export default ({ children, className }) => {
       )}
     </Highlight>
   ) : (
-    <code>{children}</code>
+    <code>
+      <Inline>{children}</Inline>
+    </code>
   )
 }
