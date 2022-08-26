@@ -11,7 +11,10 @@ import getElementOffset from "utils/getElmentOffset"
 import RevealOnScroll from "components/RevealOnScroll"
 
 const STICK_OFFSET = 100
-
+const TocWrapperCSS = () => css`
+  position: fixed;
+  top: ${STICK_OFFSET}px;
+`
 const TocWrapper = styled.div`
   position: absolute;
   opacity: 1;
@@ -37,17 +40,16 @@ const TocWrapper = styled.div`
       background: ${props => props.theme.colors.scrollHandle};
     }
 
-    ${props =>
-      props.stick &&
-      css`
-        position: fixed;
-        top: ${STICK_OFFSET}px;
-      `}
+    ${props => props.stick && TocWrapperCSS}
   }
 
   @media (max-width: 1300px) {
     display: None;
   }
+`
+const ParagraphTitleCSS = (props) => css`
+  transform: translate(-11.2px, 0);
+  color: ${props.theme.colors.secondaryText};
 `
 
 const ParagraphTitle = styled.div`
@@ -58,12 +60,7 @@ const ParagraphTitle = styled.div`
   line-height: 1.3;
   transition: all 0.2s;
 
-  ${props =>
-    props.active &&
-    css`
-      transform: translate(-11.2px, 0);
-      color: ${props => props.theme.colors.secondaryText};
-    `}
+  ${props => props.active && ParagraphTitleCSS}
 
   &:hover {
     color: ${props => props.theme.colors.text};
