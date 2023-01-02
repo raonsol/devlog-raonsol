@@ -59,7 +59,7 @@ export default Search
 
 export const pageQuery = graphql`
   query {
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: { frontmatter: { date: DESC } }) {
       nodes {
         excerpt(pruneLength: 200)
         fields {

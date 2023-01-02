@@ -98,8 +98,8 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
-      group(field: frontmatter___tags) {
+    allMdx(sort: { frontmatter: { date: DESC } }) {
+      group(field: { frontmatter: { tags: SELECT } }) {
         fieldValue
         totalCount
       }
