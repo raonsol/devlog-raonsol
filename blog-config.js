@@ -10,7 +10,7 @@ module.exports = {
     email: "mailto:raonsol@kakao.com",
   },
   utterances: {
-    repo: "raonsol/gatsby-starter-raonsol",
+    repo: "raonsol/raonsol-devlog",
     type: "pathname",
   },
 }
