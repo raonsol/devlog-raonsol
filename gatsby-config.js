@@ -11,7 +11,7 @@ const wrapESMPlugin = name =>
   }
 
 module.exports = {
-  pathPrefix: "/raonsol-devlog",
+  pathPrefix: "/devlog-raonsol",
   siteMetadata: {
     title,
     description,
@@ -96,11 +96,12 @@ module.exports = {
         mdxOptions: {
           remarkPlugins: [
             require("remark-math"),
-            require('remark-html-katex'),
+            // require('remark-html-katex'),
             require(`remark-gfm`),
             [wrapESMPlugin(`remark-external-links`), { target: false }],
           ],
           rehypePlugins: [
+            // require("rehype-katex"),
             [require("rehype-katex"), { strict: "ignore" }],
             // wrapESMPlugin(`rehype-slug`),
             // [
