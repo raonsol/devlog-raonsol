@@ -1,8 +1,17 @@
 const blogConfig = require("./blog-config")
 const { title, description, author, siteUrl } = blogConfig
 
+const wrapESMPlugin = name =>
+  function wrapESM(opts) {
+    return async (...args) => {
+      const mod = await import(name)
+      const plugin = mod.default(opts)
+      return plugin(...args)
+    }
+  }
+
 module.exports = {
-  pathPrefix: "/gatsby-starter-raonsol",
+  pathPrefix: "/devlog-raonsol",
   siteMetadata: {
     title,
     description,
@@ -67,6 +76,12 @@ module.exports = {
         extensions: [`.md`, `.mdx`],
         gatsbyRemarkPlugins: [
           {
+            resolve: `gatsby-remark-autolink-headers`,
+            options: {
+              className: `header-link-icon`,
+            },
+          },
+          {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 680,
@@ -76,16 +91,29 @@ module.exports = {
               showCaptions: true,
             },
           },
-          {
-            resolve: "gatsby-remark-static-images",
-          },
+          `gatsby-remark-static-images`,
         ],
         mdxOptions: {
-          remarkPlugins: [require("remark-math"), require(`remark-gfm`)],
-          rehypePlugins: [[require("rehype-katex"), { strict: "ignore" }]],
+          remarkPlugins: [
+            require("remark-math"),
+            require(`remark-gfm`),
+            [wrapESMPlugin(`remark-external-links`), { target: false }],
+          ],
+          rehypePlugins: [
+            [require("rehype-katex"), { strict: "ignore" }],
+            // wrapESMPlugin(`rehype-slug`),
+            // [
+            //   wrapESMPlugin(`rehype-autolink-headings`),
+            //   {
+            //     behavior: "prepend",
+            //     properties: { ariaHidden: false, tabIndex: -1 },
+            //   },
+            // ],
+          ],
         },
       },
     },
+    // { resolve: `gatsby-remark-autolink-headers` },
     `gatsby-plugin-resolve-src`,
     `gatsby-plugin-sitemap`,
     {
@@ -119,7 +147,7 @@ module.exports = {
             query: `
               {
                 allMdx(
-                  sort: { order: DESC, fields: [frontmatter___date] },
+                  sort: { frontmatter: { date: DESC } },
                 ) {
                   edges {
                     node {

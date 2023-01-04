@@ -85,7 +85,7 @@ export const pageQuery = graphql`
       }
     }
     seriesList: allMdx(
-      sort: { order: ASC, fields: [frontmatter___date] }
+      sort: { frontmatter: {date: DESC} }
       filter: { frontmatter: { series: { eq: $series } } }
     ) {
       edges {

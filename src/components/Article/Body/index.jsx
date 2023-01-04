@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   }
 `
 const components = {
+  pre: props => <div className="code-block"{...props} />,
   code: CodeBlock,
 }
 

@@ -90,7 +90,7 @@ export default Series
 export const pageQuery = graphql`
   query ($series: String) {
     posts: allMdx(
-      sort: { order: ASC, fields: [frontmatter___date] }
+      sort: { frontmatter: {date: ASC} }
       filter: { frontmatter: { series: { eq: $series } } }
     ) {
       nodes {

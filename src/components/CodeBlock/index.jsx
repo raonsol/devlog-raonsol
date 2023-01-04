@@ -19,7 +19,7 @@ export default ({ children, className }) => {
   const LineContent = styled.span`
     display: table-cell;
   `
-  const Inline = styled.div`
+  const Inline = styled.code`
     padding: 0.25rem;
     background-color: ${props => props.theme.colors.inlineCodeBackground};
     color: ${props => props.theme.colors.text};
@@ -53,6 +53,6 @@ export default ({ children, className }) => {
       )}
     </Highlight>
   ) : (
-      <Inline><code>{children}</code></Inline>
+      <Inline>{children}</Inline>
   )
 }
