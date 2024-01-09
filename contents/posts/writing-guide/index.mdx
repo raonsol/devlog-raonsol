@@ -68,26 +68,23 @@ print("Hello, world!")
 
 ### 2-2. KaTex
 
-KaTex 문법을 지원하여 복잡한 수식도 쉽게 표현할 수 있습니다.
-> 현재 원인모를 이유로 `remark-math`, `rehype-katex` 모듈 작동이 실패하기 때문에 수식을 쓸 때 이를 위해 만들어 놓은 Katex 컴포넌트를 사용해야 합니다.
->
-> `.mdx` 문서 내에서 다음과 같이 사용합니다.
->
->
-> `import {KatexBlock, KatexInline} from 'components/Katex'`
-> `<KatexInline formula="T_n = a + (n-1)d" /> // 인라인 모드`
-> `<KatexBlock formula="E = m c^{2}" />       // 블럭 모드`
-
-import {KatexBlock, KatexInline} from 'components/Katex'
+KaTex 문법을 지원하여 복잡한 수식도 쉽게 표현할 수 있습니다. `.mdx` 문서 내에서 다음과 같이 사용합니다.
 
 #### 인라인 모드
+> The formula `$a + b = 2$` tells us something important.
 
-문장 내의 수식: <KatexInline formula="T_n = a + (n-1)d" />
+The formula $a + b = 2$ tells us something important.
 
 #### 블럭 모드
+> `$$`
+>
+> `T_n = a + (n-1)d`
+>
+> `$$`
 
-<KatexBlock formula="E = m c^{2}" />
-<KatexBlock formula="Mean = \frac{10 + 14+ 7 +23+ 23+ 15 + 7 + 23 + 32}{9} = \frac{154}{9} \approx 17.11" />
+$$
+T_n = a + (n-1)d
+$$
 
 ### 2-3. GFM(Github Flavored Markdown)
 
@@ -131,19 +128,17 @@ export const Highlight = ({children, color}) => (
 위의 문장은 아래와 같은 코드로 쓰여져 있습니다.
 
 ```javascript
-export default function Highlight({children, color}) {
-  return (
-    <span
-      style={{
-        backgroundColor: color,
-        borderRadius: '2px',
-        color: '#fff',
-        padding: '0.2rem',
-      }}>
-      {children}
-    </span>
-  );
-}
+export const Highlight = ({children, color}) => (
+  <span
+    style={{
+      backgroundColor: color,
+      borderRadius: '2px',
+      color: '#fff',
+      padding: '0.2rem',
+    }}>
+    {children}
+  </span>
+);
 ```
 ```HTML
 <Highlight color="#25c2a0">도큐사우루스 초록</Highlight>과 <Highlight color="#1877F2">페이스북 파랑</Highlight>은 내가 좋아하는 색입니다.

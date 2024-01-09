@@ -66,7 +66,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `markdown-pages`,
+        name: `pages`,
         path: `${__dirname}/contents/posts`,
       },
     },
@@ -92,24 +92,14 @@ module.exports = {
             },
           },
           `gatsby-remark-static-images`,
+          `gatsby-remark-katex`,
         ],
         mdxOptions: {
           remarkPlugins: [
-            require("remark-math"),
             require(`remark-gfm`),
             [wrapESMPlugin(`remark-external-links`), { target: false }],
           ],
-          rehypePlugins: [
-            [require("rehype-katex"), { strict: "ignore" }],
-            // wrapESMPlugin(`rehype-slug`),
-            // [
-            //   wrapESMPlugin(`rehype-autolink-headings`),
-            //   {
-            //     behavior: "prepend",
-            //     properties: { ariaHidden: false, tabIndex: -1 },
-            //   },
-            // ],
-          ],
+          rehypePlugins: [],
         },
       },
     },

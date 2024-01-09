@@ -1,10 +1,10 @@
 {
-  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "requireConfigFile": "false"
-  },
-  "babelOptions": {
-    "configFile": "./.babelrc"
+    "parser": "@babel/eslint-parser",
+    "requireConfigFile": "false",
+    "babelOptions": {
+      "configFile": "./.babelrc"
+    }
   },
   "settings": {
     "react": {
@@ -15,7 +15,8 @@
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "es8": true
   },
   "extends": [
     "eslint:recommended",
