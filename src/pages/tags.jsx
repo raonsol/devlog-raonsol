@@ -54,8 +54,6 @@ const TagsPage = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={title} description={description} url={siteUrl} />
-
       <TagListWrapper>
         {selected ? (
           <Title size="sm">
@@ -88,6 +86,10 @@ const TagsPage = ({ data }) => {
     </Layout>
   );
 };
+
+export const Head = () => (
+  <SEO title={title} description={description} url={siteUrl} />
+);
 
 export default TagsPage;
 

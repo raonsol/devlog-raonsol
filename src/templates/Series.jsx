@@ -59,12 +59,6 @@ const Series = ({ pageContext, data }) => {
 
   return (
     <Layout>
-      <SEO
-        title={`SERIES: ${seriesName}`}
-        description={description}
-        url={siteUrl}
-      />
-
       <Header>
         <Subtitle> SERIES </Subtitle>
         <Title> {seriesName} </Title>
@@ -86,6 +80,13 @@ const Series = ({ pageContext, data }) => {
 };
 
 export default Series;
+export const Head = ({ pageContext }) => (
+  <SEO
+    title={`SERIES: ${pageContext.series}`}
+    description={description}
+    url={siteUrl}
+  />
+);
 
 export const pageQuery = graphql`
   query ($series: String) {

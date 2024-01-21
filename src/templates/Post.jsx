@@ -12,8 +12,7 @@ const Post = ({ data, children }) => {
   const { previous, next, seriesList } = data;
 
   const { title, date, update, tags, series } = post.frontmatter;
-  const { excerpt } = post;
-  const { readingTime, slug } = post.fields;
+  const { readingTime } = post.fields;
 
   let filteredSeries = [];
   if (series !== null) {
@@ -34,7 +33,6 @@ const Post = ({ data, children }) => {
 
   return (
     <Layout>
-      <SEO title={title} description={excerpt} url={`${siteUrl}${slug}`} />
       <Article>
         <Article.Header
           title={title}
@@ -54,6 +52,17 @@ const Post = ({ data, children }) => {
 };
 
 export default Post;
+
+export const Head = ({ data }) => {
+  const post = data.mdx;
+  return (
+    <SEO
+      title={post.frontmatter.title}
+      description={post.excerpt}
+      url={`${siteUrl}${post.fields.slug}`}
+    />
+  );
+};
 
 export const pageQuery = graphql`
   query (

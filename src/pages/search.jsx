@@ -38,7 +38,6 @@ const Search = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={title} description={description} url={siteUrl} />
       <SearchWrapper>
         <Title size="sm">
           There are {filteredPosts.length} post{filteredPosts.length > 1 && "s"}
@@ -56,6 +55,9 @@ const Search = ({ data }) => {
 };
 
 export default Search;
+export const Head = () => (
+  <SEO title={title} description={description} url={siteUrl} />
+);
 
 export const pageQuery = graphql`
   query {
