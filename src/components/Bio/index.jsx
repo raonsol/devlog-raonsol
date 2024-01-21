@@ -11,7 +11,7 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 
-import { siteUrl, description, author, links } from "../../../blog-config";
+import { description, author, links } from "../../../blog-config";
 
 const BioWrapper = styled.div`
   display: flex;
@@ -22,10 +22,7 @@ const BioWrapper = styled.div`
   }
 `;
 
-const profileImageRoot =
-  typeof window !== "undefined" && window.location.host === "localhost:8000"
-    ? "http://localhost:8000"
-    : siteUrl;
+import profileImage from "../../../static/profile.jpg";
 
 const Profile = styled.div`
   flex: 0 0 auto;
@@ -33,7 +30,7 @@ const Profile = styled.div`
   width: 128px;
   height: 128px;
   border-radius: 999px;
-  background-image: url(${profileImageRoot}/profile.jpg);
+  background-image: url(${profileImage});
   background-size: cover;
   background-position: center;
 `;
