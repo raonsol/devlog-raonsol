@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react"
-import styled from "@emotion/styled"
-import { css } from "@emotion/react"
+import React, { useState, useEffect } from "react";
+import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
-import { animateScroll } from "react-scroll"
+import { animateScroll } from "react-scroll";
 
-import useScroll from "hooks/useScroll"
+import useScroll from "hooks/useScroll";
 
-import getElementOffset from "utils/getElmentOffset"
+import getElementOffset from "utils/getElmentOffset";
 
-import RevealOnScroll from "components/RevealOnScroll"
+import RevealOnScroll from "components/RevealOnScroll";
 
-const STICK_OFFSET = 100
+const STICK_OFFSET = 100;
 const TocWrapperCSS = () => css`
   position: fixed;
   top: ${STICK_OFFSET}px;
-`
+`;
 const TocWrapper = styled.div`
   position: absolute;
   opacity: 1;
@@ -33,76 +33,76 @@ const TocWrapper = styled.div`
       width: 3px;
     }
     ::-webkit-scrollbar-track {
-      background: ${props => props.theme.colors.scrollTrack};
+      background: ${(props) => props.theme.colors.scrollTrack};
     }
 
     ::-webkit-scrollbar-thumb {
-      background: ${props => props.theme.colors.scrollHandle};
+      background: ${(props) => props.theme.colors.scrollHandle};
     }
 
-    ${props => props.stick && TocWrapperCSS}
+    ${(props) => props.stick && TocWrapperCSS}
   }
 
   @media (max-width: 1300px) {
     display: None;
   }
-`
+`;
 const ParagraphTitleCSS = (props) => css`
   transform: translate(-11.2px, 0);
   color: ${props.theme.colors.secondaryText};
-`
+`;
 
 const ParagraphTitle = styled.div`
   margin-bottom: 8px;
-  padding-left: ${props => (props.subtitle ? 19.2 : 0)}px;
+  padding-left: ${(props) => (props.subtitle ? 19.2 : 0)}px;
   font-size: 14.4px;
-  color: ${props => props.theme.colors.mutedText};
+  color: ${(props) => props.theme.colors.mutedText};
   line-height: 1.3;
   transition: all 0.2s;
 
-  ${props => props.active && ParagraphTitleCSS}
+  ${(props) => props.active && ParagraphTitleCSS}
 
   &:hover {
-    color: ${props => props.theme.colors.text};
+    color: ${(props) => props.theme.colors.text};
     cursor: pointer;
   }
-`
+`;
 
 const Toc = ({ items, articleOffset }) => {
-  const { y } = useScroll()
+  const { y } = useScroll();
 
-  const [revealAt, setRevealAt] = useState(4000)
-  const [headers, setHeaders] = useState([])
-  const [active, setActive] = useState(0)
+  const [revealAt, setRevealAt] = useState(4000);
+  const [headers, setHeaders] = useState([]);
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
-    const bioElm = document.getElementById("bio")
+    const bioElm = document.getElementById("bio");
 
     setRevealAt(
       getElementOffset(bioElm).top - bioElm.getBoundingClientRect().height - 400
-    )
-  }, [])
+    );
+  }, []);
 
   useEffect(() => {
     setHeaders(
       [
         ...document.querySelectorAll("#article-body > h2, #article-body > h3"),
-      ].map(element => getElementOffset(element).top)
-    )
-  }, [])
+      ].map((element) => getElementOffset(element).top)
+    );
+  }, []);
 
   useEffect(() => {
     headers.forEach((header, i) => {
       if (header - 300 < y) {
-        setActive(i)
-        return
+        setActive(i);
+        return;
       }
-    })
-  }, [y])
+    });
+  }, [y]);
 
-  const handleClickTitle = index => {
-    animateScroll.scrollTo(headers[index] - 100)
-  }
+  const handleClickTitle = (index) => {
+    animateScroll.scrollTo(headers[index] - 100);
+  };
 
   return (
     <RevealOnScroll revealAt={revealAt} reverse>
@@ -121,7 +121,7 @@ const Toc = ({ items, articleOffset }) => {
         </div>
       </TocWrapper>
     </RevealOnScroll>
-  )
-}
+  );
+};
 
-export default Toc
+export default Toc;

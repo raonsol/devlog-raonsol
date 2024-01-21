@@ -13,4 +13,4 @@ module.exports = {
     repo: "raonsol/devlog-raonsol",
     type: "pathname",
   },
-}
+};

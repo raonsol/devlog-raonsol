@@ -1,34 +1,34 @@
-import React from "react"
-import Highlight, { defaultProps } from "prism-react-renderer"
-import theme from "prism-react-renderer/themes/oceanicNext"
-import styled from "@emotion/styled"
+import React from "react";
+import Highlight, { defaultProps } from "prism-react-renderer";
+import theme from "prism-react-renderer/themes/oceanicNext";
+import styled from "@emotion/styled";
 
-export default ({ children, className }) => {
-  const language = className ? className.replace(/language-/, "") : ""
+const CodeBlock = ({ children, className }) => {
+  const language = className ? className.replace(/language-/, "") : "";
   const Line = styled.div`
     display: table-row;
     font-size: 0.9rem;
-  `
+  `;
   const LineNo = styled.span`
     display: table-cell;
     text-align: right;
     padding-right: 1em;
     user-select: none;
     opacity: 0.5;
-  `
+  `;
   const LineContent = styled.span`
     display: table-cell;
-  `
+  `;
   const Inline = styled.code`
     padding: 0.25rem;
-    background-color: ${props => props.theme.colors.inlineCodeBackground};
-    color: ${props => props.theme.colors.text};
+    background-color: ${(props) => props.theme.colors.inlineCodeBackground};
+    color: ${(props) => props.theme.colors.text};
     border-radius: 5px;
     font-size: 0.9rem;
     font-family: source code pro;
     line-height: 1.1rem;
     display: inline-block;
-  `
+  `;
 
   return language ? (
     <Highlight
@@ -53,6 +53,10 @@ export default ({ children, className }) => {
       )}
     </Highlight>
   ) : (
-      <Inline>{children}</Inline>
-  )
-}
+    <Inline>{children}</Inline>
+  );
+};
+
+CodeBlock.displayName = "CodeBlock";
+
+export default CodeBlock;

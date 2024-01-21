@@ -4,7 +4,6 @@ description: "어떻게 글을 작성하고 추가할까요?"
 date: 2021-04-03
 update: 2021-04-03
 tags:
-  - hoodie
   - writing-guide
 series: "gatsby로 블로그 시작하기"
 ---
@@ -55,7 +54,7 @@ Prism.JS 에 기반한 코드 하이라이팅이 제공됩니다.
 Javascript
 
 ```javascript
-console.log("Hello, world!")
+console.log("Hello, world!");
 ```
 
 Python
@@ -71,11 +70,13 @@ print("Hello, world!")
 KaTex 문법을 지원하여 복잡한 수식도 쉽게 표현할 수 있습니다. `.mdx` 문서 내에서 다음과 같이 사용합니다.
 
 #### 인라인 모드
+
 > The formula `$a + b = 2$` tells us something important.
 
 The formula $a + b = 2$ tells us something important.
 
 #### 블럭 모드
+
 > `$$`
 >
 > `T_n = a + (n-1)d`
@@ -91,17 +92,20 @@ $$
 GFM문법을 지원하여 Table 등의 다양한 서식을 표현할 수 있습니다.
 
 #### Table
+
 | foo | bar |
 | --- | --- |
 | baz | bim |
 
 #### Checkbox
+
 - [x] foo
   - [ ] bar
   - [x] baz
 - [ ] bim
 
 #### Autolink
+
 www.commonmark.org
 
 foo@bar.baz
@@ -110,36 +114,42 @@ foo@bar.baz
 
 JSX 문법을 직접 사용할 수 있습니다.
 
-export const Highlight = ({children, color}) => (
+export const Highlight = ({ children, color }) => (
   <span
     style={{
       backgroundColor: color,
-      borderRadius: '2px',
-      color: '#fff',
-      padding: '0.2rem',
-    }}>
+      borderRadius: "2px",
+      color: "#fff",
+      padding: "0.2rem",
+    }}
+  >
     {children}
   </span>
 );
 
 #### 예시
-<Highlight color="#25c2a0">도큐사우루스 초록</Highlight>과 <Highlight color="#1877F2">페이스북 파랑</Highlight>은 내가 좋아하는 색입니다.
+
+<Highlight color="#25c2a0">도큐사우루스 초록</Highlight>과 <Highlight color="#1877F2">
+  페이스북 파랑
+</Highlight>은 내가 좋아하는 색입니다.
 
 위의 문장은 아래와 같은 코드로 쓰여져 있습니다.
 
 ```javascript
-export const Highlight = ({children, color}) => (
+export const Highlight = ({ children, color }) => (
   <span
     style={{
       backgroundColor: color,
-      borderRadius: '2px',
-      color: '#fff',
-      padding: '0.2rem',
-    }}>
+      borderRadius: "2px",
+      color: "#fff",
+      padding: "0.2rem",
+    }}
+  >
     {children}
   </span>
 );
 ```
+
 ```HTML
 <Highlight color="#25c2a0">도큐사우루스 초록</Highlight>과 <Highlight color="#1877F2">페이스북 파랑</Highlight>은 내가 좋아하는 색입니다.
 ```
@@ -167,4 +177,6 @@ Frontmatter 의 태그를 통해 쉽게 문서를 분류하고 검색할 수 있
 여러분이 연관된 여러개의 문서를 작성할 때 시리즈를 사용할 수 있습니다. Frontmatter 에 작성된 시리즈가 같은 문서끼리 묶여 문서 상단에 리스트로 표시됩니다. 시리즈는 일련의 순서가 있는 문서들을 작성할 때 유용하게 사용할 수 있습니다. 시리즈는 문서의 작성 날짜 순서대로 정렬됩니다.
 
 현재 문서는 `gatsby로 블로그 시작하기` 라는 시리즈로 설정되어 있습니다.
+
+$$
 $$

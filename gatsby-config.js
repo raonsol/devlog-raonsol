@@ -1,14 +1,14 @@
-const blogConfig = require("./blog-config")
-const { title, description, author, siteUrl } = blogConfig
+const blogConfig = require("./blog-config");
+const { title, description, author, siteUrl } = blogConfig;
 
-const wrapESMPlugin = name =>
+const wrapESMPlugin = (name) =>
   function wrapESM(opts) {
     return async (...args) => {
-      const mod = await import(name)
-      const plugin = mod.default(opts)
-      return plugin(...args)
-    }
-  }
+      const mod = await import(name);
+      const plugin = mod.default(opts);
+      return plugin(...args);
+    };
+  };
 
 module.exports = {
   pathPrefix: "/devlog-raonsol",
@@ -128,15 +128,15 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMdx } }) => {
-              return allMdx.edges.map(edge => {
+              return allMdx.edges.map((edge) => {
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
                   date: edge.node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                   guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
                   custom_elements: [{ "content:encoded": edge.node.html }],
-                })
-              })
+                });
+              });
             },
             query: `
               {
@@ -165,4 +165,4 @@ module.exports = {
       },
     },
   ],
-}
+};

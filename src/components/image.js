@@ -1,6 +1,6 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 /*
  * This component is built using `gatsby-plugin-image` to automatically serve optimized
@@ -20,15 +20,15 @@ const Image = () => {
         }
       }
     }
-  `)
+  `);
 
-  const image = getImage(data.placeholderImage)
+  const image = getImage(data.placeholderImage);
 
   if (!image) {
-    return <div>Picture not found</div>
+    return <div>Picture not found</div>;
   }
 
-  return <GatsbyImage image={image} />
-}
+  return <GatsbyImage image={image} />;
+};
 
-export default Image
+export default Image;
