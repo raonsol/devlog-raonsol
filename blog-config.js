@@ -2,7 +2,7 @@ module.exports = {
   title: "raonsol's devlog",
   description: "raonsol's devlog",
   author: "raonsol",
-  siteUrl: "https://blog.raonsol.dev/",
+  siteUrl: "https://blog.raonsol.dev",
   links: {
     github: "https://github.com/raonsol",
     facebook: "https://www.facebook.com",

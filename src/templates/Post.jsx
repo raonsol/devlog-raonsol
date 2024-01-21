@@ -59,7 +59,7 @@ export const Head = ({ data }) => {
     <SEO
       title={post.frontmatter.title}
       description={post.excerpt}
-      url={`${siteUrl}${post.fields.slug}`}
+      url={`${siteUrl}/${post.fields.slug}`}
     />
   );
 };
