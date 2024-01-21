@@ -1,11 +1,11 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 
 const StyledMarkdown = styled.div`
   & {
     font-size: 17.6px;
-    color: ${props => props.theme.colors.text};
+    color: ${(props) => props.theme.colors.text};
     line-height: 1.7;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
 
   & *:first-of-type {
@@ -78,8 +78,8 @@ const StyledMarkdown = styled.div`
 
   & blockquote {
     padding: 18px 24px;
-    border-left: 4px solid ${props => props.theme.colors.blockQuoteBorder};
-    background-color: ${props => props.theme.colors.blockQuoteBackground};
+    border-left: 4px solid ${(props) => props.theme.colors.blockQuoteBorder};
+    background-color: ${(props) => props.theme.colors.blockQuoteBackground};
 
     & *:last-of-type {
       margin-bottom: 0;
@@ -95,13 +95,13 @@ const StyledMarkdown = styled.div`
   }
 
   & th {
-    border-bottom: 2px solid ${props => props.theme.colors.border};
+    border-bottom: 2px solid ${(props) => props.theme.colors.border};
     font-weight: 700;
   }
 
   & td {
-    border-top: 1px solid ${props => props.theme.colors.border};
-    border-bottom: 1px solid ${props => props.theme.colors.border};
+    border-top: 1px solid ${(props) => props.theme.colors.border};
+    border-bottom: 1px solid ${(props) => props.theme.colors.border};
   }
 
   & td,
@@ -114,7 +114,7 @@ const StyledMarkdown = styled.div`
   }
 
   & tr:nth-of-type(even) {
-    background-color: ${props => props.theme.colors.tableBackground};
+    background-color: ${(props) => props.theme.colors.tableBackground};
   }
 
   & tr:last-of-type td {
@@ -137,9 +137,9 @@ const StyledMarkdown = styled.div`
   & table code.language-text {
     padding: 1.6px 4.8px;
     font-size: 14.4px;
-    background-color: ${props => props.theme.colors.inlineCodeBackground};
+    background-color: ${(props) => props.theme.colors.inlineCodeBackground};
     font-weight: bold;
-    color: ${props => props.theme.colors.text};
+    color: ${(props) => props.theme.colors.text};
   }
 
   & h2 > code.language-text,
@@ -149,7 +149,8 @@ const StyledMarkdown = styled.div`
   }
 
   & tr:nth-of-type(even) code.language-text {
-    background-color: ${props => props.theme.colors.inlineCodeBackgroundDarker};
+    background-color: ${(props) =>
+      props.theme.colors.inlineCodeBackgroundDarker};
   }
 
   & ul,
@@ -186,11 +187,11 @@ const StyledMarkdown = styled.div`
       height: 12px;
     }
     ::-webkit-scrollbar-track {
-      background: ${props => props.theme.colors.scrollTrack};
+      background: ${(props) => props.theme.colors.scrollTrack};
     }
 
     ::-webkit-scrollbar-thumb {
-      background: ${props => props.theme.colors.scrollHandle};
+      background: ${(props) => props.theme.colors.scrollHandle};
     }
   }
 
@@ -215,18 +216,28 @@ const StyledMarkdown = styled.div`
 
   & hr {
     border: none;
-    border-bottom: 1px solid ${props => props.theme.colors.border};
+    border-bottom: 1px solid ${(props) => props.theme.colors.border};
   }
 
   & a {
     padding: 1.6px 0;
-    color: ${props => props.theme.colors.text};
+    color: ${(props) => props.theme.colors.text};
   }
 
   & a:hover {
-    background-color: ${props => props.theme.colors.text};
-    color: ${props => props.theme.colors.hoveredLinkText};
+    background-color: ${(props) => props.theme.colors.text};
+    color: ${(props) => props.theme.colors.hoveredLinkText};
   }
-`
 
-export default StyledMarkdown
+  & a.anchor-header {
+    fill: ${(props) => props.theme.colors.text};
+  }
+
+  & a.anchor-header:hover {
+    color: initial;
+    background-color: initial;
+    fill: ${(props) => props.theme.colors.tertiaryText};
+  }
+`;
+
+export default StyledMarkdown;

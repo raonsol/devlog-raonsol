@@ -1,14 +1,14 @@
-const blogConfig = require("./blog-config")
-const { title, description, author, siteUrl } = blogConfig
+const blogConfig = require("./blog-config");
+const { title, description, author, siteUrl } = blogConfig;
 
-const wrapESMPlugin = name =>
+const wrapESMPlugin = (name) =>
   function wrapESM(opts) {
     return async (...args) => {
-      const mod = await import(name)
-      const plugin = mod.default(opts)
-      return plugin(...args)
-    }
-  }
+      const mod = await import(name);
+      const plugin = mod.default(opts);
+      return plugin(...args);
+    };
+  };
 
 module.exports = {
   pathPrefix: "/devlog-raonsol",
@@ -63,10 +63,11 @@ module.exports = {
         icon: `static/favicon.png`,
       },
     },
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `markdown-pages`,
+        name: `pages`,
         path: `${__dirname}/contents/posts`,
       },
     },
@@ -78,7 +79,11 @@ module.exports = {
           {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
-              className: `header-link-icon`,
+              className: `anchor-header`,
+              maintainCase: false,
+              removeAccents: false,
+              isIconAfterHeader: false,
+              elements: [`h1`, `h2`, `h3`, `h4`],
             },
           },
           {
@@ -92,28 +97,17 @@ module.exports = {
             },
           },
           `gatsby-remark-static-images`,
+          `gatsby-remark-katex`,
         ],
         mdxOptions: {
           remarkPlugins: [
-            require("remark-math"),
             require(`remark-gfm`),
             [wrapESMPlugin(`remark-external-links`), { target: false }],
           ],
-          rehypePlugins: [
-            [require("rehype-katex"), { strict: "ignore" }],
-            // wrapESMPlugin(`rehype-slug`),
-            // [
-            //   wrapESMPlugin(`rehype-autolink-headings`),
-            //   {
-            //     behavior: "prepend",
-            //     properties: { ariaHidden: false, tabIndex: -1 },
-            //   },
-            // ],
-          ],
+          rehypePlugins: [],
         },
       },
     },
-    // { resolve: `gatsby-remark-autolink-headers` },
     `gatsby-plugin-resolve-src`,
     `gatsby-plugin-sitemap`,
     {
@@ -134,15 +128,15 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMdx } }) => {
-              return allMdx.edges.map(edge => {
+              return allMdx.edges.map((edge) => {
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
                   date: edge.node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + edge.node.fields.slug,
                   guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
                   custom_elements: [{ "content:encoded": edge.node.html }],
-                })
-              })
+                });
+              });
             },
             query: `
               {
@@ -171,4 +165,4 @@ module.exports = {
       },
     },
   ],
-}
+};

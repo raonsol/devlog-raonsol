@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react"
-import styled from "@emotion/styled"
-import { MDXProvider } from "@mdx-js/react"
+import React, { useState, useEffect } from "react";
+import styled from "@emotion/styled";
+import { MDXProvider } from "@mdx-js/react";
 
-import useOffsetTop from "hooks/useOffsetTop"
+import useOffsetTop from "hooks/useOffsetTop";
 
-import Toc from "./Toc"
-import StyledMarkdown from "./StyledMarkdown"
-import CodeBlock from "../../CodeBlock"
+import Toc from "./Toc";
+import StyledMarkdown from "./StyledMarkdown";
+import CodeBlock from "../../CodeBlock";
 
 const Wrapper = styled.div`
   position: relative;
@@ -15,24 +15,24 @@ const Wrapper = styled.div`
   @media (max-width: 768px) {
     padding: 0 15px;
   }
-`
+`;
 const components = {
-  pre: props => <div className="code-block"{...props} />,
+  pre: (props) => <div className="code-block" {...props} />,
   code: CodeBlock,
-}
+};
 
 const Body = ({ children }) => {
-  const [toc, setToc] = useState([])
+  const [toc, setToc] = useState([]);
 
-  const [ref, offsetTop] = useOffsetTop()
+  const [ref, offsetTop] = useOffsetTop();
 
   useEffect(() => {
     setToc(
       Array.from(
         document.querySelectorAll("#article-body > h2, #article-body > h3")
       )
-    )
-  }, [])
+    );
+  }, []);
 
   return (
     <Wrapper>
@@ -41,7 +41,7 @@ const Body = ({ children }) => {
         <MDXProvider components={components}>{children}</MDXProvider>
       </StyledMarkdown>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Body
+export default Body;

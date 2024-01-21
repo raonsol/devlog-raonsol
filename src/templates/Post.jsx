@@ -1,35 +1,35 @@
-import React from "react"
-import SEO from "components/SEO"
-import { graphql } from "gatsby"
+import React from "react";
+import SEO from "components/SEO";
+import { graphql } from "gatsby";
 
-import Layout from "components/Layout"
-import Article from "components/Article"
+import Layout from "components/Layout";
+import Article from "components/Article";
 
-import { siteUrl } from "../../blog-config"
+import { siteUrl } from "../../blog-config";
 
 const Post = ({ data, children }) => {
-  const post = data.mdx
-  const { previous, next, seriesList } = data
+  const post = data.mdx;
+  const { previous, next, seriesList } = data;
 
-  const { title, date, update, tags, series } = post.frontmatter
-  const { excerpt } = post
-  const { readingTime, slug } = post.fields
+  const { title, date, update, tags, series } = post.frontmatter;
+  const { excerpt } = post;
+  const { readingTime, slug } = post.fields;
 
-  let filteredSeries = []
+  let filteredSeries = [];
   if (series !== null) {
-    filteredSeries = seriesList.edges.map(seriesPost => {
+    filteredSeries = seriesList.edges.map((seriesPost) => {
       if (seriesPost.node.id === post.id) {
         return {
           ...seriesPost.node,
           currentPost: true,
-        }
+        };
       } else {
         return {
           ...seriesPost.node,
           currentPost: false,
-        }
+        };
       }
-    })
+    });
   }
 
   return (
@@ -46,14 +46,14 @@ const Post = ({ data, children }) => {
         {filteredSeries.length > 0 && (
           <Article.Series header={series} series={filteredSeries} />
         )}
-        <Article.Body children={children} />
+        <Article.Body>{children}</Article.Body>
         <Article.Footer previous={previous} next={next} />
       </Article>
     </Layout>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;
 
 export const pageQuery = graphql`
   query (
@@ -85,7 +85,7 @@ export const pageQuery = graphql`
       }
     }
     seriesList: allMdx(
-      sort: { frontmatter: {date: DESC} }
+      sort: { frontmatter: { date: DESC } }
       filter: { frontmatter: { series: { eq: $series } } }
     ) {
       edges {
@@ -117,4 +117,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

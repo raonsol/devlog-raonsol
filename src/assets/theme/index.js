@@ -1,13 +1,13 @@
-const GRAY9 = "#212529"
-const GRAY8 = "#343a40"
-const GRAY7 = "#495057"
-const GRAY6 = "#868e96"
-const GRAY5 = "#adb5bd"
-const GRAY4 = "#ced4da"
-const GRAY3 = "#dee2e6"
-const GRAY2 = "#e9ecef"
-const GRAY1 = "#f1f3f5"
-const GRAY0 = "#f8f9fa"
+const GRAY9 = "#212529";
+const GRAY8 = "#343a40";
+const GRAY7 = "#495057";
+const GRAY6 = "#868e96";
+const GRAY5 = "#adb5bd";
+const GRAY4 = "#ced4da";
+const GRAY3 = "#dee2e6";
+const GRAY2 = "#e9ecef";
+const GRAY1 = "#f1f3f5";
+const GRAY0 = "#f8f9fa";
 
 export const light = {
   name: "light",
@@ -45,7 +45,7 @@ export const light = {
     textFieldActivatedBorder: GRAY5,
     tableBackground: GRAY1,
   },
-}
+};
 
 export const dark = {
   name: "dark",
@@ -83,4 +83,4 @@ export const dark = {
     textFieldActivatedBorder: GRAY6,
     tableBackground: "#292e33",
   },
-}
+};

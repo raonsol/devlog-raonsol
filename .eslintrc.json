@@ -1,10 +1,14 @@
 {
-  "parser": "@babel/eslint-parser",
   "parserOptions": {
-    "requireConfigFile": "false"
-  },
-  "babelOptions": {
-    "configFile": "./.babelrc"
+    "parser": "@babel/eslint-parser",
+    "sourceType": "module",
+    "ecmaVersion": 2020,
+    "allowImportExportEverywhere": true,
+    "requireConfigFile": "false",
+    "babelOptions": {
+      // "configFile": "./.babelrc",
+      "presets": ["@babel/preset-env"]
+    }
   },
   "settings": {
     "react": {
