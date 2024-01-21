@@ -63,6 +63,7 @@ module.exports = {
         icon: `static/favicon.png`,
       },
     },
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
