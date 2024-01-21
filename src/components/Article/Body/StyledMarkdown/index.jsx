@@ -228,10 +228,14 @@ const StyledMarkdown = styled.div`
     color: ${props => props.theme.colors.hoveredLinkText};
   }
 
+  & a.anchor-header {
+    fill: ${props => props.theme.colors.text};
+  }
+  
   & a.anchor-header:hover {
     color: initial;
     background-color: initial;
-    fill: ${props => props.theme.colors.spinner};
+    fill: ${props => props.theme.colors.tertiaryText};
   }
 `
 
