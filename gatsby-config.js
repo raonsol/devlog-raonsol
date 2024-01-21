@@ -78,7 +78,11 @@ module.exports = {
           {
             resolve: `gatsby-remark-autolink-headers`,
             options: {
-              className: `header-link-icon`,
+              className: `anchor-header`,
+              maintainCase: false,
+              removeAccents: false,
+              isIconAfterHeader: false,
+              elements: [`h1`, `h2`, `h3`, `h4`],
             },
           },
           {
@@ -103,7 +107,6 @@ module.exports = {
         },
       },
     },
-    // { resolve: `gatsby-remark-autolink-headers` },
     `gatsby-plugin-resolve-src`,
     `gatsby-plugin-sitemap`,
     {

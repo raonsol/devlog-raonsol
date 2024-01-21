@@ -5,7 +5,7 @@ const StyledMarkdown = styled.div`
     font-size: 17.6px;
     color: ${props => props.theme.colors.text};
     line-height: 1.7;
-    overflow: hidden;
+    /* overflow: hidden; */
   }
 
   & *:first-of-type {
@@ -226,6 +226,12 @@ const StyledMarkdown = styled.div`
   & a:hover {
     background-color: ${props => props.theme.colors.text};
     color: ${props => props.theme.colors.hoveredLinkText};
+  }
+
+  & a.anchor-header:hover {
+    color: initial;
+    background-color: initial;
+    fill: ${props => props.theme.colors.spinner};
   }
 `
 
